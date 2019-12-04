@@ -1,0 +1,9 @@
+#lang racket
+
+(define (compute-fuel-for-module mass)
+  (- (floor (/ mass 3)) 2))
+
+(define (compute-total-fuel input-name)
+  (let* ([mass-list (map string->number (file->lines input-name))]
+         [fuel-list (map compute-fuel-for-module mass-list)])
+    (foldl + 0 fuel-list)))
