@@ -34,7 +34,7 @@
         [decoded-image (list)])
     (for-each (lambda (pixel)
                 (set! decoded-image (append decoded-image (list (get-first-visible-pixel (hash-ref layer-table pixel))))))
-              (hash-keys layer-table))
+              (build-list (* image-width image-height) values))
     decoded-image))
 
 (define (build-layer-table image image-width image-height)
@@ -63,5 +63,3 @@
 
 (define (show-image layers)
   (apply vc-append (map pixel-row layers)))
-  
-(show-image (solve-day8-part2))
